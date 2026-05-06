@@ -14,14 +14,14 @@ END //
 
 CREATE PROCEDURE sp_get_all_posts()
 BEGIN
-SELECT p.post_id, p.content, p.image, p.created_at, p.updated_at,
-       u.user_name, u.cover_image,
-       COUNT(c.comment_id) AS comment_count
-FROM Posts p
-         JOIN Users u ON p.user_id = u.user_id
-         LEFT JOIN Comments c ON p.post_id = c.post_id
-GROUP BY p.post_id, p.content, p.image, p.created_at, p.updated_at, u.user_name, u.cover_image
-ORDER BY p.created_at DESC;
+    SELECT p.post_id, p.content, p.image, p.created_at, p.updated_at,
+           u.user_name, u.cover_image,
+           COUNT(c.comment_id) AS comment_count
+    FROM Posts p
+             JOIN Users u ON p.user_id = u.user_id
+             LEFT JOIN Comments c ON p.post_id = c.post_id
+    GROUP BY p.post_id, p.content, p.image, p.created_at, p.updated_at, u.user_name, u.cover_image
+    ORDER BY p.created_at DESC;
 END //
 
 CREATE PROCEDURE sp_update_post(
