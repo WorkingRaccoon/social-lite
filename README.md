@@ -6,10 +6,9 @@
 
 ## 專案架構
 
-本專案採用前後端分離開發，分為兩個獨立 Repository：
+本專案採用前後端整合：
 
-- **Frontend**：[social-lite-frontend](https://github.com/你的帳號/frontend)
-- **Backend**：[social-lite-backend](https://github.com/你的帳號/backend)
+- **social-lite**：[social-lite-frontend](https://github.com/WorkingRaccoon/social-lite)
 
 ### 系統架構
 
