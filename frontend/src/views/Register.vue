@@ -18,8 +18,21 @@ const handleFileChange = (event) => {
 }
 
 const handleRegister = async () => {
+  const phoneRule = /^09\d{8}$/;
+  const emailRule = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   if (!username.value || !phone.value || !password.value) {
-    errorMessage.value = "請填寫 * 提示欄位!";
+    errorMessage.value = '請填寫所有必填欄位';
+    return;
+  }
+
+  if (!phoneRule.test(phone.value)) {
+    errorMessage.value = '手機號碼格式不正確（範例：0912345678）';
+    return;
+  }
+
+  if (email.value && !emailRule.test(email.value)) {
+    errorMessage.value = '電子郵件格式不正確';
     return;
   }
 

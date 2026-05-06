@@ -11,6 +11,18 @@ const errorMessage = ref('');
 const authStore = useAuthStore();
 
 const login = async () => {
+  const phoneRule = /^09\d{8}$/;
+
+  if (!phone.value || !password.value) {
+    errorMessage.value = '請填寫所有欄位';
+    return;
+  }
+
+  if (!phoneRule.test(phone.value)) {
+    errorMessage.value = '手機號碼格式不正確（範例：0912345678）';
+    return;
+  }
+
   try {
     const response = await axios.post('http://localhost:8080/api/auth/token', {
       phone: phone.value,
@@ -34,7 +46,6 @@ const login = async () => {
   }
 };
 </script>
-
 <template>
   <div class="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
     <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 w-full max-w-sm">
