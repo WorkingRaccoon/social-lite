@@ -13,7 +13,6 @@ public class TokenBlacklistService {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    // 把 token 加入黑名單
     public void addToBlacklist(String token, Date expiration) {
         long ttl = expiration.getTime() - System.currentTimeMillis();
         if (ttl > 0) {
@@ -26,7 +25,6 @@ public class TokenBlacklistService {
         }
     }
 
-    // 檢查 token 是否在黑名單
     public boolean isBlacklisted(String token) {
         return Boolean.TRUE.equals(redisTemplate.hasKey("blacklist:" + token));
     }

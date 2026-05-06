@@ -39,15 +39,12 @@ public class JwtFilter extends OncePerRequestFilter {
             System.out.println("是否在黑名單: " + blacklistService.isBlacklisted(token));
         }
 
-        // 沒有 token 就直接放行（讓 Security 決定要不要擋）
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
         String token = authHeader.substring(7);
-
-        // 檢查黑名單
         if (blacklistService.isBlacklisted(token)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("Token 已失效，請重新登入");
@@ -68,7 +65,6 @@ public class JwtFilter extends OncePerRequestFilter {
             System.out.println("Token 驗證失敗");
         }
 
-        // 驗證 token
         if (jwtUtil.validateToken(token)) {
             String phone = jwtUtil.extractPhone(token);
             UsernamePasswordAuthenticationToken authentication =

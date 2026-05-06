@@ -52,7 +52,7 @@ START TRANSACTION;
 -- 先刪除該文章的所有留言
 DELETE FROM Comments WHERE post_id = p_post_id;
 
--- 再刪除文章本身
+-- 再刪除文章
 DELETE FROM Posts WHERE post_id = p_post_id AND user_id = p_user_id;
 
 COMMIT;
