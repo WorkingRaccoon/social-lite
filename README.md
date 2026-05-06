@@ -8,7 +8,7 @@
 
 本專案採用前後端整合：
 
-- **social-lite**：[social-lite-frontend](https://github.com/WorkingRaccoon/social-lite)
+- **social-lite**：[social-lite](https://github.com/WorkingRaccoon/social-lite)
 
 ### 系統架構
 
